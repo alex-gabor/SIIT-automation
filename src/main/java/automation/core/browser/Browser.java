@@ -195,30 +195,30 @@ public class Browser {
 	
 		FirefoxProfile profile = new FirefoxProfile();
 		FirefoxOptions options = new FirefoxOptions();
-	
-		File firebugPath = new File("./lib/firebug-2.0.19.xpi");
-		File firepathPath = new File("./lib/firepath-0.9.7.1-fx.xpi");
-	
-		profile.addExtension(firebugPath);
-		profile.addExtension(firepathPath);
-	
+
+		// File firebugPath = new File("./lib/firebug-2.0.19.xpi");
+		// File firepathPath = new File("./lib/firepath-0.9.7.1-fx.xpi");
+		//
+		// profile.addExtension(firebugPath);
+		// profile.addExtension(firepathPath);
+
 		profile.setAssumeUntrustedCertificateIssuer(false);
 
-		profile.setPreference("extensions.firebug.currentVersion", "2.0.19");
-		profile.setPreference("extensions.firepath.currentVersion", "0.9.7.1");
+		// profile.setPreference("extensions.firebug.currentVersion", "2.0.19");
+		// profile.setPreference("extensions.firepath.currentVersion", "0.9.7.1");
 		profile.setPreference("browser.download.folderList", 2);
 		profile.setPreference("browser.download.manager.showWhenStarting", false);
 		profile.setPreference("browser.download.useDownloadDir", true);
+		// profile.setPreference("browser.download.dir", "/downloads");
 		profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "text/csv, application/vnd.ms-excel, application/excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/zip, text/plain");
 		profile.setPreference("browser.helperApps.alwaysAsk.force", false);
 		profile.setPreference("browser.tabs.loadInBackground", true);
 		profile.setPreference("focusmanager.testmode", true); // handle focus & blur events when the browser window doesn't have focus
-		// profile.setPreference("browser.download.dir", "/downloads");
-	
+
 		options.setCapability(FirefoxDriver.PROFILE, profile);
 		options.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, ACCEPT);
-		options.setCapability("marionette", false);
-	
+		// options.setCapability("marionette", false);
+
 		return options;
 	}
 
