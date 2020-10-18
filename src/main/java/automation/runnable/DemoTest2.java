@@ -10,9 +10,9 @@ import java.time.LocalDate;
 import org.junit.Test;
 
 import automation.core.SeleneseTest;
-import automation.pom.siit.AdmissionsPage;
+import automation.pom.siit.StudentGuidePage;
 import automation.pom.siit.ApplyToCoursePage;
-import automation.pom.siit.HomePage;
+import automation.pom.siit.ProgramsPage;
 import automation.pom.siit.menu.MainMenu;
 
 /**
@@ -35,11 +35,11 @@ public class DemoTest2 extends SeleneseTest {
 	@Test
 	public void testApplyToCourse() {
 
-		HomePage homePage = new HomePage(getWebDriver());
+		ProgramsPage homePage = new ProgramsPage(getWebDriver());
 
 		MainMenu menu = homePage.getMenu();
 
-		AdmissionsPage admissionPage = menu.goToAdmissionsPage();
+		StudentGuidePage admissionPage = menu.goToStudentGuidePage();
 
 		admissionPage.search("Automation course");
 

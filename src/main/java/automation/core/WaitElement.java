@@ -50,5 +50,5 @@ public class WaitElement {
 
 		wait.until(isTrue);
 	}
-
+	
 }

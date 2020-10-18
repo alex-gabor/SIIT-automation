@@ -10,9 +10,8 @@ import java.time.LocalDate;
 import org.junit.Test;
 
 import automation.core.SeleneseTest;
-import automation.pom.siit.AdmissionsPage;
 import automation.pom.siit.ApplyToCoursePage;
-import automation.pom.siit.HomePage;
+import automation.pom.siit.ProgramsPage;
 import automation.pom.siit.menu.MainMenu;
 
 /**
@@ -35,15 +34,19 @@ public class DemoTest extends SeleneseTest {
 	@Test
 	public void testApplyToCourse() {
 
-		HomePage homePage = new HomePage(getWebDriver());
+		ProgramsPage programsPage = new ProgramsPage(getWebDriver());
 
-		MainMenu menu = homePage.getMenu();
+		programsPage.acceptCookies();
 
-		AdmissionsPage admissionPage = menu.goToAdmissionsPage();
+		MainMenu menu = programsPage.getMenu();
 
-		admissionPage.search("Automation course");
+		ProgramsPage programs = menu.goToProgramsPage();
 
-		admissionPage.selectSearchResult("Test Automation Cluj-Napoca");
+		programs.search("automation");
+
+		programs.selectSearchResult("Test Automation");
+
+		programs.applyToCourse("Iași");
 
 		fillCourseApplicationForm();
 	}
@@ -75,7 +78,7 @@ public class DemoTest extends SeleneseTest {
 
 		applyToCourseForm.checkITKnowledge(SELF_TAUGHT);
 
-		applyToCourseForm.selectCourseName("Test Automation - Mai 2019");
+		applyToCourseForm.selectCourseName("Test Automation - Octombrie 2020");
 
 		applyToCourseForm.selectBusinessSector("Altele");
 

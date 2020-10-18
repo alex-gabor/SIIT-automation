@@ -31,11 +31,11 @@ public class MyFirstTest {
 		searchBox.sendKeys("koala", Keys.RETURN);
 
 		WebElement myDynamicElement = (new WebDriverWait(driver, 10))
-				.until(ExpectedConditions.presenceOfElementLocated(By.id("resultStats")));
+				.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
 
 		System.out.println(myDynamicElement.getText());
 
-		List<WebElement> resultTitleElements = driver.findElements(By.tagName("h3"));
+		List<WebElement> resultTitleElements = driver.findElements(By.xpath("//h3/span"));
 
 		System.out.println(resultTitleElements.size());
 

@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import automation.core.WaitElement;
 import automation.pom.AbstractPageObject;
@@ -22,10 +23,10 @@ public class AbstractBaseWebsitePage extends AbstractPageObject {
 	
 	private MainMenu menu = new MainMenu(driver);
 	
-	@FindBy(id = "s")
+	@FindBy(name = "ofsearch")
 	private WebElement searchForm;
 
-	@FindBy(xpath = "//form[@id='searchform']/input[@type='submit']")
+	@FindBy(xpath = "//input[@type='submit']")
 	private WebElement btnSearch;
 
 	public AbstractBaseWebsitePage(WebDriver driver) {
@@ -42,7 +43,7 @@ public class AbstractBaseWebsitePage extends AbstractPageObject {
 	}
 
 	/**
-	 * Search the entire website using the search box
+	 * Search the entire Programs section using the search box
 	 * 
 	 * @param keywords
 	 *        the {@link String} to search for
@@ -54,7 +55,7 @@ public class AbstractBaseWebsitePage extends AbstractPageObject {
 
 		btnSearch.click();
 
-		By resultsLocator = By.xpath("//section[@id='primary']");
+		By resultsLocator = By.xpath("//main[@id='main']");
 
 		new WaitElement().waitUntil(visibilityOfAllElementsLocatedBy(resultsLocator), 10);
 
@@ -73,8 +74,12 @@ public class AbstractBaseWebsitePage extends AbstractPageObject {
 
 		driver.findElement(coursesResult).click();
 
-		String expectedTitle = searchResultLinkText.toUpperCase();
-		String actualTitle = driver.findElement(By.tagName("h1")).getText();
+		WaitElement w = new WaitElement();
+
+		w.waitUntil(ExpectedConditions.visibilityOfElementLocated(By.tagName("h2")), 10);
+
+		String expectedTitle = searchResultLinkText;
+		String actualTitle = driver.findElement(By.tagName("h2")).getText();
 
 		assertEquals("The course title was incorrect", expectedTitle, actualTitle);
 	}
