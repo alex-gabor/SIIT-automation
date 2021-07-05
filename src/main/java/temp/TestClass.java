@@ -13,7 +13,7 @@ public class TestClass {
 	@BeforeClass
 	public static void beforeClass() {
 
-		System.out.println("Before class");
+		System.out.println("Before entire class");
 	}
 
 	@Before
@@ -25,13 +25,19 @@ public class TestClass {
 	@Test
 	public void myTestMethod() {
 
-		System.out.println("running...");
+		System.out.println("Test 1");
 
 	}
 
 	@Test
-	public void test01() {
+	public void test02() {
 
-		System.out.println("Test 1");
+		System.out.println("Test 2");
+	}
+
+	@Test
+	public void test03() {
+
+		System.out.println("Test 3");
 	}
 }

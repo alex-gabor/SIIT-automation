@@ -6,7 +6,6 @@ import static org.openqa.selenium.UnexpectedAlertBehaviour.ACCEPT;
 import static org.openqa.selenium.remote.CapabilityType.LOGGING_PREFS;
 import static org.openqa.selenium.remote.CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR;
 
-import java.io.File;
 import java.util.logging.Level;
 
 import org.openqa.selenium.WebDriver;
@@ -26,6 +25,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import automation.core.listeners.TestEventListener;
 import automation.core.logging.MessageLogger;
 import automation.core.properties.Settings;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 /**
  * Class that acts as a browser handler
@@ -98,7 +98,7 @@ public class Browser {
 	public WebDriver getWebDriver() {
 		return driver;
 	}
-	
+
 	/**
 	 * Set the {@link WebDriver} instance
 	 * 
@@ -129,11 +129,12 @@ public class Browser {
 	 * Initializes the Firefox Driver
 	 */
 	private void setupFirefoxDriver() {
-	
-		File gekoDriver = new File("./lib/geckodriver");
-	
-		System.setProperty("webdriver.gecko.driver", gekoDriver.getAbsolutePath());
-	
+
+		// File gekoDriver = new File("./lib/geckodriver");
+		// System.setProperty("webdriver.gecko.driver", gekoDriver.getAbsolutePath());
+
+		WebDriverManager.firefoxdriver().setup();
+
 		driver = new FirefoxDriver(getFirefoxOptions());
 	}
 
@@ -141,11 +142,12 @@ public class Browser {
 	 * Initializes the Chrome Driver
 	 */
 	private void setupChromeDriver() {
-	
-		File chromeDriver = new File("./lib/chromedriver");
-	
-		System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());
-	
+
+		// File chromeDriver = new File("./lib/chromedriver");
+		// System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());
+
+		WebDriverManager.chromedriver().setup();
+
 		driver = new ChromeDriver(getChromeOptions());
 	}
 
@@ -153,17 +155,17 @@ public class Browser {
 	 * Register a {@link TestEventListener} for the current {@link WebDriver} instance
 	 */
 	private void registerEventListener() {
-	
+
 		TestEventListener eventListener = new TestEventListener();
-	
+
 		EventFiringWebDriver eventWebDriver = new EventFiringWebDriver(driver);
-	
+
 		EventFiringWebDriver eventFiringDriver = eventWebDriver.register(eventListener);
-	
+
 		eventFiringDriver.manage().deleteAllCookies();
-	
+
 		driver = eventFiringDriver;
-	
+
 		LOG.info(" " + CHECK_MARK + " Register event listener");
 	}
 
@@ -171,9 +173,9 @@ public class Browser {
 	 * Maximize the browser window
 	 */
 	private void maximizeBrowserWindow() {
-	
+
 		Window browserWindow = driver.manage().window();
-	
+
 		browserWindow.maximize();
 	}
 
@@ -181,9 +183,9 @@ public class Browser {
 	 * Configure the {@link WebDriver} timeouts
 	 */
 	private void configureTimeouts() {
-	
+
 		Timeouts timeouts = driver.manage().timeouts();
-	
+
 		timeouts.pageLoadTimeout(80, SECONDS);
 		timeouts.setScriptTimeout(30, SECONDS);
 	}
@@ -192,7 +194,7 @@ public class Browser {
 	 * Creates the {@link FirefoxOptions} need for creating a {@link FirefoxDriver}
 	 */
 	private static FirefoxOptions getFirefoxOptions() {
-	
+
 		FirefoxProfile profile = new FirefoxProfile();
 		FirefoxOptions options = new FirefoxOptions();
 
@@ -210,7 +212,8 @@ public class Browser {
 		profile.setPreference("browser.download.manager.showWhenStarting", false);
 		profile.setPreference("browser.download.useDownloadDir", true);
 		// profile.setPreference("browser.download.dir", "/downloads");
-		profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "text/csv, application/vnd.ms-excel, application/excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/zip, text/plain");
+		profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
+				"text/csv, application/vnd.ms-excel, application/excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/zip, text/plain");
 		profile.setPreference("browser.helperApps.alwaysAsk.force", false);
 		profile.setPreference("browser.tabs.loadInBackground", true);
 		profile.setPreference("focusmanager.testmode", true); // handle focus & blur events when the browser window doesn't have focus
@@ -239,7 +242,7 @@ public class Browser {
 
 		options.setCapability(LOGGING_PREFS, logPreferences);
 		options.setCapability(UNEXPECTED_ALERT_BEHAVIOUR, ACCEPT);
-	
+
 		return options;
 	}
 

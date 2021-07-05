@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 /**
  * @author alexgabor
  *
@@ -19,7 +21,7 @@ public class MySecondTest {
 	@Test
 	public void mySecondTest() {
 
-		System.setProperty("webdriver.chrome.driver", "./lib/chromedriver");
+		WebDriverManager.chromedriver().setup();
 
 		WebDriver driver = new ChromeDriver();
 

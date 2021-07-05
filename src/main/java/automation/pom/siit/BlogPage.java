@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
  */
 public class BlogPage extends AbstractBaseWebsitePage {
 
+	// TODO PageObject web elements and actions to be defined (specific to this page)
+
 	public BlogPage(WebDriver driver) {
 		super(driver);
 	}

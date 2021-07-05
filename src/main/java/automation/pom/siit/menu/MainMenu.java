@@ -45,7 +45,7 @@ public class MainMenu extends AbstractPageObject {
 	public MainMenu(WebDriver driver) {
 		super(driver);
 	}
-	
+
 	/**
 	 * Navigate to Programs page
 	 * 
@@ -57,7 +57,7 @@ public class MainMenu extends AbstractPageObject {
 
 		return new ProgramsPage(driver);
 	}
-	
+
 	/**
 	 * Navigate to Test Guide page
 	 * 
@@ -69,7 +69,7 @@ public class MainMenu extends AbstractPageObject {
 
 		return new StudentGuidePage(driver);
 	}
-	
+
 	/**
 	 * Navigate to Community page
 	 * 
@@ -81,7 +81,7 @@ public class MainMenu extends AbstractPageObject {
 
 		return new CommunityPage(driver);
 	}
-	
+
 	/**
 	 * Navigate to Blog page
 	 * 

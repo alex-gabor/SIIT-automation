@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
  */
 public class CommunityPage extends AbstractBaseWebsitePage {
 
+	// TODO PageObject web elements and actions to be defined (specific to this page)
+
 	public CommunityPage(WebDriver driver) {
 		super(driver);
 	}

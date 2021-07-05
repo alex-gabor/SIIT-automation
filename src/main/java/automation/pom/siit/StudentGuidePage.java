@@ -9,7 +9,9 @@ import org.openqa.selenium.WebDriver;
  *
  */
 public class StudentGuidePage extends AbstractBaseWebsitePage {
-	
+
+	// TODO PageObject web elements and actions to be defined (specific to this page)
+
 	public StudentGuidePage(WebDriver driver) {
 		super(driver);
 	}

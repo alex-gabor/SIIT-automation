@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
  */
 public class PodcastPage extends AbstractBaseWebsitePage {
 
+	// TODO PageObject web elements and actions to be defined (specific to this page)
+
 	public PodcastPage(WebDriver driver) {
 		super(driver);
 	}
